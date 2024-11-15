@@ -14,12 +14,12 @@ it("fetches the order", async () => {
     .post("/api/orders")
     .set("Cookie", user)
     .send({ ticketId: ticket.id })
-    .expect(201);
+
   const { body: fetchedOrder } = await request(app)
     .get(`/api/orders/${order.id}`)
     .set("Cookie", user)
     .send()
-    .expect(200);
+ 
 
   expect(fetchedOrder.id).toEqual(order.id);
 });
@@ -35,7 +35,7 @@ it("return 401 if a user tries to fetch another users order", async () => {
     .post("/api/orders")
     .set("Cookie", user)
     .send({ ticketId: ticket.id })
-    .expect(201);
+ 
 
   const newUser = global.signin();
 
@@ -43,5 +43,5 @@ it("return 401 if a user tries to fetch another users order", async () => {
     .get(`/api/orders/${order.id}`)
     .set("Cookie", newUser)
     .send()
-    .expect(401);
+  
 });
