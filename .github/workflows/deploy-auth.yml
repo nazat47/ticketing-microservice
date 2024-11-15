@@ -13,6 +13,6 @@ jobs:
       - run: cd auth && docker build -t nazatmustag/auth .
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
-          DOCKER_USERNAME: ${{DOCKER_USERNAME}}
-          DOCKER_PASSWORD: ${{DOCKER_PASSWORD}}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - run: docker push nazatmustag/auth
